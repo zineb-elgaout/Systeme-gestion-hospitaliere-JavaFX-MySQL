@@ -8,20 +8,6 @@
 ![Architecture](https://img.shields.io/badge/Architecture-MVC-green?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Termine-yellow?style=flat-square)
 
----
-
-## 📋 Table des matières
-
-- [Aperçu](#-aperçu)
-- [Fonctionnalités](#-fonctionnalités)
-- [Architecture](#-architecture)
-- [Structure du projet](#-structure-du-projet)
-- [Prérequis](#-prérequis)
-- [Installation](#-installation)
-- [Configuration base de données](#-configuration-base-de-données)
-- [Rôles et accès](#-rôles-et-accès)
-- [Technologies utilisées](#-technologies-utilisées)
-- [Auteur](#-auteur)
 
 ---
 
