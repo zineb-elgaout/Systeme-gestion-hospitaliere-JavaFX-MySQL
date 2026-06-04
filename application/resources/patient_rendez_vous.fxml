@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.PatientRendezVousController"
+      spacing="0" styleClass="subview-root">
+
+    <!-- En-tête -->
+    <HBox styleClass="subview-header" alignment="CENTER_LEFT" spacing="12">
+        <Label text="📅  Mes rendez-vous" styleClass="subview-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Annuler sélection"
+                styleClass="btn-secondary"
+                onAction="#handleAnnulerRdv"/>
+    </HBox>
+
+    <!-- Tableau des RDV -->
+    <TableView fx:id="tableRdv" VBox.vgrow="ALWAYS"
+               styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="colDate"       text="Date"        prefWidth="110"/>
+            <TableColumn fx:id="colHeure"      text="Heure"       prefWidth="80"/>
+            <TableColumn fx:id="colMedecin"    text="Médecin"     prefWidth="180"/>
+            <TableColumn fx:id="colSpecialite" text="Spécialité"  prefWidth="150"/>
+            <TableColumn fx:id="colMotif"      text="Motif"       prefWidth="200"/>
+            <TableColumn fx:id="colStatut"     text="Statut"      prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun rendez-vous enregistré."
+                   style="-fx-text-fill:#7f8c8d;-fx-font-size:14px;"/>
+        </placeholder>
+    </TableView>
+
+    <!-- Formulaire nouveau RDV -->
+    <VBox fx:id="formNouveauRdv" styleClass="form-card" spacing="12">
+        <Label text="Prendre un nouveau rendez-vous"
+               styleClass="form-section-title"/>
+
+        <GridPane hgap="16" vgap="10">
+            <Label text="Médecin :"        GridPane.columnIndex="0" GridPane.rowIndex="0"
+                   styleClass="field-label"/>
+            <ComboBox fx:id="medecinCombo" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                      prefWidth="320" styleClass="input-field"/>
+
+            <Label text="Date :"           GridPane.columnIndex="2" GridPane.rowIndex="0"
+                   styleClass="field-label"/>
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="3" GridPane.rowIndex="0"
+                        styleClass="input-field"/>
+
+            <Label text="Heure :"          GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   styleClass="field-label"/>
+            <ComboBox fx:id="heureCombo"   GridPane.columnIndex="1" GridPane.rowIndex="1"
+                      prefWidth="140" styleClass="input-field"/>
+
+            <Label text="Motif :"          GridPane.columnIndex="2" GridPane.rowIndex="1"
+                   styleClass="field-label"/>
+            <TextField fx:id="motifField"  GridPane.columnIndex="3" GridPane.rowIndex="1"
+                       promptText="Ex: Consultation de suivi"
+                       styleClass="input-field"/>
+        </GridPane>
+
+        <Label fx:id="formErrorLabel"   styleClass="error-label"
+               visible="false" wrapText="true" maxWidth="Infinity"/>
+        <Label fx:id="formSuccessLabel" styleClass="success-label"
+               visible="false" wrapText="true" maxWidth="Infinity"/>
+
+        <Button fx:id="btnNouveauRdv"
+                text="Demander ce rendez-vous"
+                styleClass="btn-primary"
+                onAction="#handleNouveauRdv"/>
+    </VBox>
+</VBox>

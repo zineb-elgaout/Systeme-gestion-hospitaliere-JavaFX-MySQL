@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.PharmacienOrdonnancesController"
+      spacing="24" styleClass="sub-view">
+
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <!-- Liste ordonnances -->
+    <VBox spacing="12" HBox.hgrow="ALWAYS">
+       <HBox alignment="CENTER_LEFT" spacing="12">
+
+    <Label text="📋" style="-fx-font-size:28px;"/>
+
+    <Label text="Ordonnances"
+           styleClass="page-title"/>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <Button text="🔄 Actualiser"
+            styleClass="btn-secondary"
+            onAction="#handleActualiser"/>
+
+</HBox>
+        <Label fx:id="pharmacienLabel" styleClass="page-subtitle"/>
+
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="filter-bar">
+            <TextField fx:id="searchField"
+                       promptText="Rechercher patient ou médecin…"
+                       HBox.hgrow="ALWAYS"/>
+            <Button text="🔍 Rechercher" styleClass="btn-secondary"
+                    onAction="#handleRechercher"/>
+        </HBox>
+
+        <TableView fx:id="table" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="colNumero"  text="N°"       prefWidth="80"/>
+                <TableColumn fx:id="colPatient" text="Patient"  prefWidth="150"/>
+                <TableColumn fx:id="colMedecin" text="Médecin"  prefWidth="150"/>
+                <TableColumn fx:id="colDate"    text="Date"     prefWidth="110"/>
+                <TableColumn fx:id="colStatut"  text="Statut"   prefWidth="110"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucune ordonnance trouvée."
+                       styleClass="placeholder-label"/>
+            </placeholder>
+        </TableView>
+
+        <Label fx:id="messageLabel" wrapText="true"/>
+    </VBox>
+
+    <!-- Détail ordonnance -->
+    <VBox spacing="12" prefWidth="300" styleClass="ordonnance-preview">
+        <Label text="Détail" styleClass="section-title"/>
+        <Separator/>
+
+        <Label text="N° Ordonnance"  styleClass="form-label"/>
+        <Label fx:id="detailNumero"  styleClass="page-subtitle"/>
+
+        <Label text="Patient"        styleClass="form-label"/>
+        <Label fx:id="detailPatient" styleClass="page-subtitle"/>
+
+        <Label text="Médecin"        styleClass="form-label"/>
+        <Label fx:id="detailMedecin" styleClass="page-subtitle"/>
+
+        <Label text="Date"           styleClass="form-label"/>
+        <Label fx:id="detailDate"    styleClass="page-subtitle"/>
+
+        <Label text="Prescription"   styleClass="form-label"/>
+        <TextArea fx:id="detailPrescription"
+                  editable="false" wrapText="true"
+                  prefRowCount="6"/>
+
+        <Label text="Statut"         styleClass="form-label"/>
+        <ComboBox fx:id="statutCombo" maxWidth="Infinity"/>
+        <Button text="✅ Valider le statut" styleClass="btn-primary"
+                maxWidth="Infinity" onAction="#handleValiderStatut"/>
+    </VBox>
+
+</HBox>

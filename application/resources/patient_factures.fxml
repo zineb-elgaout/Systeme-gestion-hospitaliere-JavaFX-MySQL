@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.PatientFacturesController"
+      spacing="0" styleClass="subview-root">
+
+    <!-- ══ EN-TÊTE ═════════════════════════════════════════ -->
+    <HBox styleClass="subview-header" alignment="CENTER_LEFT" spacing="12">
+        <Label text="💳  Mes factures" styleClass="subview-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="filtreStatutCombo"
+                  styleClass="input-field"
+                  prefWidth="160"/>
+        <Button text="↻  Actualiser"
+                styleClass="btn-secondary-blue"
+                onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- ══ RÉSUMÉ FINANCIER ════════════════════════════════ -->
+    <HBox spacing="16" style="-fx-padding:16px 24px 0 24px;">
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="TOTAL DÛ" styleClass="stat-label"/>
+            <Label fx:id="totalDuLabel" text="0.00 MAD"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card stat-card-green" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="TOTAL PAYÉ" styleClass="stat-label"/>
+            <Label fx:id="totalPayeLabel" text="0.00 MAD"
+                   styleClass="stat-value stat-value-green"/>
+        </VBox>
+
+        <VBox styleClass="stat-card stat-card-red" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="RESTE À PAYER" styleClass="stat-label"/>
+            <Label fx:id="totalRestantLabel" text="0.00 MAD"
+                   styleClass="stat-value"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ══ CONTENU PRINCIPAL ═══════════════════════════════ -->
+    <HBox spacing="16" style="-fx-padding:16px 24px 24px 24px;"
+          VBox.vgrow="ALWAYS">
+
+        <!-- Tableau des factures -->
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" spacing="0">
+            <TableView fx:id="tableFactures" VBox.vgrow="ALWAYS"
+                       styleClass="data-table">
+                <columns>
+                    <!--
+                        Pas de colonne "description" : la table facture
+                        n'a pas ce champ. On affiche date, médecin,
+                        montant total, montant payé, restant, statut.
+                    -->
+                    <TableColumn fx:id="colDate"
+                                 text="Date"          prefWidth="110"/>
+                    <TableColumn fx:id="colMedecin"
+                                 text="Médecin"       prefWidth="200"/>
+                    <TableColumn fx:id="colMontantTotal"
+                                 text="Montant total" prefWidth="130"/>
+                    <TableColumn fx:id="colMontantPaye"
+                                 text="Payé"          prefWidth="130"/>
+                    <TableColumn fx:id="colRestant"
+                                 text="Restant"       prefWidth="130"/>
+                    <TableColumn fx:id="colStatut"
+                                 text="Statut"        prefWidth="120"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune facture enregistrée."
+                           style="-fx-text-fill:#7f8c8d;-fx-font-size:14px;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <!-- Panneau de détail -->
+        <VBox styleClass="detail-panel" prefWidth="270"
+              minWidth="250" spacing="14">
+
+            <Label text="Détail de la facture"
+                   styleClass="detail-panel-title"/>
+
+            <VBox spacing="8">
+                <Label text="Date" styleClass="detail-label"/>
+                <Label fx:id="detailDateLabel" styleClass="detail-value"
+                       text="—"/>
+            </VBox>
+            <VBox spacing="8">
+                <Label text="Médecin" styleClass="detail-label"/>
+                <Label fx:id="detailMedecinLabel" styleClass="detail-value"
+                       text="—"/>
+            </VBox>
+
+            <Separator/>
+
+            <VBox spacing="8">
+                <Label text="Montant total" styleClass="detail-label"/>
+                <Label fx:id="detailTotalLabel"
+                       styleClass="detail-value detail-amount"
+                       text="—"/>
+            </VBox>
+            <VBox spacing="8">
+                <Label text="Montant payé" styleClass="detail-label"/>
+                <Label fx:id="detailPayeLabel"
+                       styleClass="detail-value detail-amount-green"
+                       text="—"/>
+            </VBox>
+            <VBox spacing="8">
+                <Label text="Reste à payer" styleClass="detail-label"/>
+                <Label fx:id="detailRestantLabel"
+                       styleClass="detail-value detail-amount-red"
+                       text="—"/>
+            </VBox>
+
+            <Separator/>
+
+            <VBox spacing="8">
+                <Label text="Statut" styleClass="detail-label"/>
+                <Label fx:id="detailStatutLabel"
+                       styleClass="detail-value"
+                       text="—"/>
+            </VBox>
+
+        </VBox>
+    </HBox>
+</VBox>

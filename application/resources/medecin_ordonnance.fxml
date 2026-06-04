@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.MedecinOrdonnanceController"
+      spacing="24" styleClass="sub-view">
+
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <VBox spacing="18" prefWidth="360">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="📝" style="-fx-font-size:28px;"/>
+            <Label text="Rédiger une ordonnance" styleClass="page-title"/>
+        </HBox>
+
+        <Label text="Patient *" styleClass="form-label"/>
+        <ComboBox fx:id="patientCombo"
+                  promptText="Sélectionner le patient"
+                  maxWidth="Infinity"/>
+
+        <Label text="Date *" styleClass="form-label"/>
+        <DatePicker fx:id="dateOrdonnance" maxWidth="Infinity"/>
+
+        <Label text="Durée de traitement" styleClass="form-label"/>
+        <TextField fx:id="dureeField" promptText="ex : 7 jours, 1 mois…"/>
+
+        <Label text="Prescription *" styleClass="form-label"/>
+        <TextArea fx:id="prescriptionArea"
+                  promptText="Médicament — dosage — fréquence"
+                  prefRowCount="8" wrapText="true" VBox.vgrow="ALWAYS"/>
+
+        <HBox spacing="12">
+            <Button text="✅  Générer" styleClass="btn-primary"
+                    onAction="#handleGenererOrdonnance"
+                    maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Button text="🗑  Effacer" styleClass="btn-danger"
+                    onAction="#handleEffacer"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="16" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"
+          styleClass="ordonnance-preview">
+        <Label text="Aperçu de l'ordonnance" styleClass="section-title"/>
+        <Separator/>
+        <Label text="🏥 Médecin" style="-fx-font-weight:bold;"/>
+        <Label fx:id="medecinSignatureLabel" styleClass="form-label" wrapText="true"/>
+        <Separator/>
+        <Label text="ORDONNANCE MÉDICALE"
+               style="-fx-font-size:15px;-fx-font-weight:bold;"/>
+        <Separator/>
+        <Label fx:id="apercuPatientLabel" text="Patient : —"
+               styleClass="form-label"/>
+        <Label fx:id="apercuDateLabel"    text="Date : —"
+               styleClass="form-label"/>
+        <Separator/>
+        <Label fx:id="apercuPrescriptionLabel" text="—"
+               wrapText="true"/>
+        <Label fx:id="apercuDureeLabel" text=""
+               styleClass="form-label"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Separator/>
+        <Label text="Cachet et Signature du médecin"
+               styleClass="page-subtitle"/>
+        <Label text="__________________________"/>
+    </VBox>
+
+</HBox>

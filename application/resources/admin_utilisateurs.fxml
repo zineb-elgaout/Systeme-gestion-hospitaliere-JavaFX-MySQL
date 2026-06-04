@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.AdminUtilisateursController"
+      spacing="16" styleClass="sub-view">
+
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+
+    <Label text="👤" style="-fx-font-size:32px;"/>
+
+    <VBox>
+        <Label text="Gestion des utilisateurs"
+               styleClass="page-title"/>
+        <Label fx:id="adminLabel"
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <Button text="🔄 Actualiser"
+            styleClass="btn-secondary"
+            onAction="#handleActualiser"/>
+
+</HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <!-- Colonne gauche : tableau + filtres -->
+        <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+            <!-- Barre de recherche -->
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="filter-bar">
+                <TextField fx:id="searchField"
+                           promptText="Rechercher nom, prénom, email…"
+                           HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="filtreRole" prefWidth="140"/>
+                <Button text="🔍 Rechercher" styleClass="btn-secondary"
+                        onAction="#handleRechercher"/>
+            </HBox>
+
+            <!-- Tableau -->
+            <TableView fx:id="table" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colId"     text="ID"       prefWidth="50"/>
+                    <TableColumn fx:id="colNom"    text="Nom"      prefWidth="130"/>
+                    <TableColumn fx:id="colPrenom" text="Prénom"   prefWidth="130"/>
+                    <TableColumn fx:id="colEmail"  text="Email"    prefWidth="200"/>
+                    <TableColumn fx:id="colTel"    text="Tél."     prefWidth="120"/>
+                    <TableColumn fx:id="colRole"   text="Rôle"     prefWidth="110"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucun utilisateur trouvé."
+                           styleClass="placeholder-label"/>
+                </placeholder>
+            </TableView>
+
+            <Label fx:id="messageLabel" wrapText="true"/>
+
+        </VBox>
+
+        <!-- Colonne droite : formulaire -->
+<ScrollPane fitToWidth="true"
+            prefWidth="320"
+            HBox.hgrow="NEVER"
+            style="-fx-background-color:transparent;">
+
+    <content>
+
+        <VBox spacing="12"
+              styleClass="ordonnance-preview">
+
+            <Label text="Formulaire"
+                   styleClass="section-title"/>
+
+            <Separator/>
+
+            <Label text="Nom *"
+                   styleClass="form-label"/>
+            <TextField fx:id="nomField"
+                       promptText="Nom"/>
+
+            <Label text="Prénom *"
+                   styleClass="form-label"/>
+            <TextField fx:id="prenomField"
+                       promptText="Prénom"/>
+
+            <Label text="Email *"
+                   styleClass="form-label"/>
+            <TextField fx:id="emailField"
+                       promptText="email@exemple.com"/>
+
+            <Label text="Téléphone"
+                   styleClass="form-label"/>
+            <TextField fx:id="telField"
+                       promptText="0600000000"/>
+
+            <Label text="Mot de passe"
+                   styleClass="form-label"/>
+            <PasswordField fx:id="mdpField"
+                           promptText="Requis à la création"/>
+
+            <Label text="Rôle *"
+                   styleClass="form-label"/>
+            <ComboBox fx:id="roleCombo"
+                      maxWidth="Infinity"/>
+
+            <Separator/>
+
+            <VBox spacing="8">
+
+                <Button fx:id="btnAjouter"
+                        text="➕ Ajouter"
+                        styleClass="btn-primary"
+                        maxWidth="Infinity"
+                        onAction="#handleAjouter"/>
+
+                <Button fx:id="btnModifier"
+                        text="✏️ Modifier"
+                        styleClass="btn-secondary"
+                        maxWidth="Infinity"
+                        onAction="#handleModifier"
+                        disable="true"/>
+
+                <Button fx:id="btnSupprimer"
+                        text="🗑 Supprimer"
+                        styleClass="btn-danger"
+                        maxWidth="Infinity"
+                        onAction="#handleSupprimer"
+                        disable="true"/>
+
+                <Button text="🔑 Réinit. mot de passe"
+                        styleClass="btn-secondary"
+                        maxWidth="Infinity"
+                        onAction="#handleReinitMdp"/>
+
+                <Button text="🧹 Vider"
+                        styleClass="btn-secondary"
+                        maxWidth="Infinity"
+                        onAction="#handleViderFormulaire"/>
+
+            </VBox>
+
+        </VBox>
+
+    </content>
+
+</ScrollPane>
+
+    </HBox>
+</VBox>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.MedecinRdvController"
+      spacing="20" styleClass="sub-view">
+
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+    
+    
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="📅" style="-fx-font-size:32px;"/>
+        <VBox>
+            <Label text="Gestion des rendez-vous" styleClass="page-title"/>
+            <Label fx:id="medecinLabel" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="＋  Nouveau RDV" styleClass="btn-primary"
+                onAction="#handleNouveauRdv"/>
+    </HBox>
+    
+    <!-- ✅ Section modification statut -->
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="filter-bar">
+        <Label text="Modifier statut du RDV sélectionné :"/>
+        <ComboBox fx:id="nouveauStatut" prefWidth="180"/>
+        <Button text="✔  Appliquer" styleClass="btn-primary"
+                onAction="#handleModifierStatut"/>
+    </HBox>
+
+    <!-- Filtres -->
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="filter-bar">
+        <Label text="Statut :"/>
+        <ComboBox fx:id="filtreStatut" prefWidth="160"/>
+        <Label text="Date :"/>
+        <DatePicker fx:id="filtreDate" prefWidth="160"/>
+        <Button text="🔍 Filtrer" styleClass="btn-secondary"
+                onAction="#handleFiltrer"/>
+        <Button text="🔄 Actualiser" styleClass="btn-secondary"
+                onAction="#handleActualiser"/>
+    </HBox>
+
+    <!-- Tableau -->
+    <TableView fx:id="rdvTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="colPatient" text="Patient"  prefWidth="200"/>
+            <TableColumn fx:id="colDate"    text="Date"     prefWidth="130"/>
+            <TableColumn fx:id="colHeure"   text="Heure"    prefWidth="100"/>
+            <TableColumn fx:id="colMotif"   text="Motif"    prefWidth="200"/>
+            <TableColumn fx:id="colStatut"  text="Statut"   prefWidth="120"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun rendez-vous trouvé." styleClass="placeholder-label"/>
+        </placeholder>
+    </TableView>
+
+   
+
+</VBox>

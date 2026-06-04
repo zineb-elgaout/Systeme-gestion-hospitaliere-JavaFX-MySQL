@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.AccueilController"
+      prefHeight="720" prefWidth="1200"
+      styleClass="accueil-root">
+
+    <!-- ══ SIDEBAR ═════════════════════════════════════════ -->
+    <VBox styleClass="sidebar">
+
+        <HBox styleClass="sidebar-logo" alignment="CENTER" spacing="10">
+            <Label text="🏥" style="-fx-font-size:22px; -fx-text-fill:white;"/>
+            <Label text="HôpitalGest" styleClass="sidebar-title"/>
+        </HBox>
+
+        <VBox styleClass="user-info" alignment="CENTER" spacing="6">
+            <Label fx:id="userInitialsLabel" styleClass="user-avatar"/>
+            <Label fx:id="welcomeLabel"      styleClass="user-name"/>
+            <Label fx:id="roleLabel"          styleClass="user-role"/>
+            <Label fx:id="emailLabel"         styleClass="user-email"/>
+        </VBox>
+
+        <Separator styleClass="sidebar-separator"/>
+        <Label text="NAVIGATION" styleClass="menu-section-label"/>
+        <VBox fx:id="menuContainer" styleClass="menu-container"
+              VBox.vgrow="ALWAYS" spacing="3"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Separator styleClass="sidebar-separator"/>
+
+        <Button text="⬅  Se déconnecter"
+                styleClass="btn-logout"
+                maxWidth="Infinity"
+                onAction="#handleLogout"/>
+        <Region prefHeight="10"/>
+    </VBox>
+
+    <!-- ══ CONTENU PRINCIPAL (BorderPane) ══════════════════ -->
+    <!--
+        BorderPane permet de charger dynamiquement les sous-vues
+        dans la zone centrale sans recréer toute la fenêtre.
+    -->
+    <BorderPane fx:id="mainContent" HBox.hgrow="ALWAYS"
+                styleClass="main-content"/>
+
+</HBox>

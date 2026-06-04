@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane fitToWidth="true"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.controller.AdminRapportsController"
+            styleClass="sub-view">
+
+  <content>
+    <VBox spacing="24">
+      <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+      <!-- ══ EN-TÊTE ══════════════════════════════════════════ -->
+      <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="📊" style="-fx-font-size:32px;"/>
+        <VBox>
+          <Label text="Rapports et statistiques" styleClass="page-title"/>
+          <Label fx:id="adminLabel" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="🔄 Actualiser" styleClass="btn-secondary"
+                onAction="#handleActualiser"/>
+      </HBox>
+
+      <Separator/>
+
+      <!-- ══ CARTES KPI ══════════════════════════════════════ -->
+      <Label text="Vue d'ensemble" styleClass="section-title"/>
+      <FlowPane hgap="18"
+          vgap="18"
+          prefWrapLength="1200"
+          alignment="CENTER_LEFT">
+
+        <!-- Total utilisateurs -->
+        <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          <Label text="👥 Utilisateurs" styleClass="section-title"/>
+          <Label fx:id="totalLabel"
+                 style="-fx-font-size:38px;-fx-font-weight:bold;-fx-text-fill:#1a5276;"/>
+          <Label text="total" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Médecins -->
+        <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          
+          <Label text="👨‍⚕️ Médecins" styleClass="section-title"/>
+          <Label fx:id="medecinLabel"
+                 style="-fx-font-size:38px;-fx-font-weight:bold;-fx-text-fill:#1a5276;"/>
+          <Label text="médecins" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Patients -->
+       <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          <Label text="🧍 Patients" styleClass="section-title"/>
+          <Label fx:id="patientLabel"
+                 style="-fx-font-size:38px;-fx-font-weight:bold;-fx-text-fill:#117a65;"/>
+          <Label text="patients" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Pharmaciens -->
+       <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          <Label text="💊 Pharmaciens" styleClass="section-title"/>
+          <Label fx:id="pharmacienLabel"
+                 style="-fx-font-size:38px;-fx-font-weight:bold;-fx-text-fill:#117a65;"/>
+          <Label text="pharmaciens" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- Admins -->
+       <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          <Label text="🔧 Admins" styleClass="section-title"/>
+          <Label fx:id="adminCountLabel"
+                 style="-fx-font-size:38px;-fx-font-weight:bold;-fx-text-fill:#7d3c98;"/>
+          <Label text="administrateurs" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- CA encaissé -->
+       <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          <Label text="✅ Encaissé" styleClass="section-title"/>
+          <Label fx:id="payeLabel"
+                 style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#27ae60;"/>
+          <Label text="facturé et payé" styleClass="page-subtitle"/>
+        </VBox>
+
+        <!-- CA en attente -->
+        <VBox styleClass="stats-card"
+      prefWidth="210"
+      prefHeight="140"
+      spacing="10"
+      alignment="CENTER">
+          <Label text="⏳ En attente" styleClass="section-title"/>
+          <Label fx:id="attenteLabel"
+                 style="-fx-font-size:22px;-fx-font-weight:bold;-fx-text-fill:#e67e22;"/>
+          <Label text="à encaisser" styleClass="page-subtitle"/>
+        </VBox>
+
+      </FlowPane>
+
+      <Separator/>
+
+      <!-- ══ LIGNE 1 : PieChart rôles + BarChart RDV ══════════ -->
+      <Label text="Répartition des utilisateurs &amp; Rendez-vous" styleClass="section-title"/>
+      <HBox spacing="20">
+
+        <!-- PieChart : utilisateurs par rôle -->
+        <VBox styleClass="ordonnance-preview" HBox.hgrow="ALWAYS" spacing="8">
+          <Label text="Utilisateurs par rôle" styleClass="form-label"/>
+          <PieChart fx:id="pieRoles"
+                    prefHeight="300"
+                    animated="true"
+                    clockwise="true"
+                    startAngle="90"/>
+        </VBox>
+
+        <!-- BarChart : RDV par statut -->
+        <VBox styleClass="ordonnance-preview" HBox.hgrow="ALWAYS" spacing="8">
+          <Label text="Rendez-vous par statut" styleClass="form-label"/>
+          <BarChart fx:id="barRdv" prefHeight="300" animated="true">
+            <xAxis>
+              <CategoryAxis fx:id="xAxisRdv" label="Statut"/>
+            </xAxis>
+            <yAxis>
+              <NumberAxis fx:id="yAxisRdv" label="Nombre" minorTickCount="1"/>
+            </yAxis>
+          </BarChart>
+        </VBox>
+
+      </HBox>
+
+      <Separator/>
+
+      <!-- ══ LIGNE 2 : BarChart CA médecins + PieChart factures ═ -->
+      <Label text="Chiffre d'affaires &amp; Facturation" styleClass="section-title"/>
+      <HBox spacing="20">
+
+        <!-- BarChart : CA par médecin -->
+        <VBox styleClass="ordonnance-preview" HBox.hgrow="ALWAYS" spacing="8">
+          <Label text="CA encaissé par médecin (MAD)" styleClass="form-label"/>
+          <BarChart fx:id="barCa" prefHeight="300" animated="true">
+            <xAxis>
+              <CategoryAxis fx:id="xAxisCa" label="Médecin"/>
+            </xAxis>
+            <yAxis>
+              <NumberAxis fx:id="yAxisCa" label="Montant (MAD)"/>
+            </yAxis>
+          </BarChart>
+        </VBox>
+
+        <!-- PieChart : factures par statut -->
+        <VBox styleClass="ordonnance-preview" HBox.hgrow="ALWAYS" spacing="8">
+          <Label text="Répartition des factures" styleClass="form-label"/>
+          <PieChart fx:id="pieFactures"
+                    prefHeight="300"
+                    animated="true"
+                    clockwise="true"
+                    startAngle="90"/>
+        </VBox>
+
+      </HBox>
+
+      <Separator/>
+
+      <!-- ══ LIGNE 3 : BarChart Top médicaments ══════════════ -->
+      <Label text="Médicaments les plus dispensés" styleClass="section-title"/>
+      <VBox styleClass="ordonnance-preview" spacing="8">
+        <Label text="Top 5 médicaments (quantité totale dispensée)"
+               styleClass="form-label"/>
+        <BarChart fx:id="barMeds" prefHeight="280" animated="true">
+          <xAxis>
+            <CategoryAxis fx:id="xAxisMeds" label="Médicament"/>
+          </xAxis>
+          <yAxis>
+            <NumberAxis fx:id="yAxisMeds" label="Quantité"/>
+          </yAxis>
+        </BarChart>
+      </VBox>
+
+    </VBox>
+  </content>
+</ScrollPane>

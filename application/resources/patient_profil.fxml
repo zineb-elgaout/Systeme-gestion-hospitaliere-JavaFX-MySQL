@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="application.controller.PatientProfilController"
+            fitToWidth="true"
+            style="-fx-background:transparent;-fx-background-color:transparent;">
+
+    <VBox spacing="24" style="-fx-padding:32px;-fx-background-color:#f0f4f8;">
+
+        <!-- Avatar + nom -->
+        <HBox alignment="CENTER_LEFT" spacing="20"
+              styleClass="form-card">
+            <Label fx:id="avatarLabel"
+                   style="-fx-font-size:36px;-fx-font-weight:bold;
+                          -fx-text-fill:white;-fx-background-color:#1a5276;
+                          -fx-background-radius:50px;-fx-padding:20px 24px;"/>
+            <VBox spacing="6">
+                <Label fx:id="nomCompletLabel"
+                       style="-fx-font-size:22px;-fx-font-weight:bold;
+                              -fx-text-fill:#1a5276;"/>
+                <Label fx:id="emailLabel"
+                       style="-fx-font-size:13px;-fx-text-fill:#7f8c8d;"/>
+                <Label fx:id="roleLabel"
+                       style="-fx-font-size:12px;-fx-text-fill:white;
+                              -fx-background-color:#1a5276;
+                              -fx-background-radius:10px;
+                              -fx-padding:3px 10px;"/>
+            </VBox>
+        </HBox>
+
+        <!-- Infos non modifiables -->
+        <VBox styleClass="form-card" spacing="14">
+            <Label text="Informations médicales"
+                   styleClass="form-section-title"/>
+
+            <HBox spacing="40">
+                <VBox spacing="6">
+                    <Label text="Date de naissance" styleClass="field-label"/>
+                    <Label fx:id="dateNaissanceLabel"
+                           style="-fx-font-size:14px;-fx-text-fill:#2c3e50;"/>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Groupe sanguin" styleClass="field-label"/>
+                    <Label fx:id="groupeSanguinLabel"
+                           style="-fx-font-size:14px;-fx-font-weight:bold;
+                                  -fx-text-fill:#c0392b;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Infos modifiables -->
+        <VBox styleClass="form-card" spacing="14">
+            <Label text="Modifier mes informations"
+                   styleClass="form-section-title"/>
+
+            <Label text="Téléphone" styleClass="field-label"/>
+            <TextField fx:id="telephoneField"
+                       promptText="06XXXXXXXX"
+                       styleClass="input-field" maxWidth="280"/>
+
+            <Label text="Adresse" styleClass="field-label"/>
+            <TextField fx:id="adresseField"
+                       promptText="Rue, Ville"
+                       styleClass="input-field"/>
+
+            <Label text="Allergies connues" styleClass="field-label"/>
+            <TextField fx:id="allergiesField"
+                       promptText="Pénicilline, Aspirine..."
+                       styleClass="input-field"/>
+
+            <Label fx:id="errorLabel"   styleClass="error-label"
+                   visible="false" wrapText="true"/>
+            <Label fx:id="successLabel" styleClass="success-label"
+                   visible="false" wrapText="true"/>
+
+            <Button text="💾  Sauvegarder les modifications"
+                    styleClass="btn-primary"
+                    onAction="#handleSauvegarder"
+                    maxWidth="280"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>

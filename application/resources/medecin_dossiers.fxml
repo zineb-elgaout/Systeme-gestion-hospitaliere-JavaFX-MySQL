@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<!--
+    StackPane racine = contenu principal + overlay modal superposé.
+    L'overlay est visible=false par défaut et managed=false pour
+    ne pas perturber le layout quand il est fermé.
+-->
+<StackPane xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="application.controller.MedecinDossiersController">
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTENU PRINCIPAL
+    ══════════════════════════════════════════════════════════ -->
+    <VBox spacing="20" styleClass="sub-view">
+        <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+        <!-- En-tête -->
+        <HBox alignment="CENTER_LEFT" spacing="16">
+            <Label text="👥" style="-fx-font-size:32px;"/>
+            <VBox>
+                <Label text="Dossiers patients" styleClass="page-title"/>
+                <Label fx:id="medecinLabel" styleClass="page-subtitle"/>
+            </VBox>
+        </HBox>
+
+        <!-- Barre de recherche -->
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="filter-bar">
+            <TextField fx:id="searchField"
+                       promptText="Rechercher par nom ou prénom…"
+                       HBox.hgrow="ALWAYS"
+                       styleClass="input-field"/>
+            <Button text="🔍  Rechercher" styleClass="btn-secondary"
+                    onAction="#handleRechercher"/>
+            <Button text="✖  Effacer"    styleClass="btn-danger"
+                    onAction="#handleEffacerRecherche"/>
+        </HBox>
+
+        <!-- Tableau patients -->
+        <TableView fx:id="patientsTable" VBox.vgrow="ALWAYS"
+                   styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="colNom"    text="Nom"       prefWidth="180"/>
+                <TableColumn fx:id="colPrenom" text="Prénom"    prefWidth="180"/>
+                <TableColumn fx:id="colEmail"  text="Email"     prefWidth="240"/>
+                <TableColumn fx:id="colTel"    text="Téléphone" prefWidth="150"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucun dossier trouvé." styleClass="placeholder-label"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Bouton ouvrir -->
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <Label text="Double-clic sur une ligne pour ouvrir directement"
+                   style="-fx-font-size:11px;-fx-text-fill:#aab7c4;"/>
+            <Button text="📂  Ouvrir le dossier" styleClass="btn-primary"
+                    onAction="#handleOuvrirDossier"/>
+        </HBox>
+    </VBox>
+
+    <!-- ══════════════════════════════════════════════════════
+         MODAL OVERLAY (superposé au contenu)
+    ══════════════════════════════════════════════════════════ -->
+    <StackPane fx:id="modalOverlay"
+               visible="false"
+               managed="false"
+               styleClass="modal-overlay">
+
+        <!-- Cliquer en dehors de la carte ferme le modal -->
+        <padding><Insets/></padding>
+
+        <!-- ── Carte modale ─────────────────────────────── -->
+        <VBox styleClass="modal-card"
+              spacing="0"
+              maxWidth="480"
+              StackPane.alignment="CENTER">
+
+            <!-- ── En-tête ── -->
+            <HBox styleClass="modal-header" alignment="CENTER_LEFT" spacing="12">
+                <Label text="🗂" styleClass="modal-icon"/>
+                <VBox HBox.hgrow="ALWAYS" spacing="2">
+                    <Label text="Dossier Médical" styleClass="modal-header-title"/>
+                    <Label fx:id="modalPatientNom" styleClass="modal-header-subtitle"
+                           text="Patient"/>
+                </VBox>
+                <Button text="✕" styleClass="modal-close-btn"
+                        onAction="#handleFermerModal"/>
+            </HBox>
+
+            <!-- ── Corps ── -->
+            <VBox styleClass="modal-body" spacing="14">
+                <padding><Insets top="20" right="24" bottom="8" left="24"/></padding>
+
+                <!-- Groupe sanguin + Date créaction côte à côte -->
+                <HBox spacing="16">
+                    <!-- Groupe sanguin -->
+                    <VBox styleClass="modal-info-block" HBox.hgrow="ALWAYS" spacing="4">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label text="🩸" style="-fx-font-size:16px;"/>
+                            <Label text="GROUPE SANGUIN" styleClass="modal-field-label"/>
+                        </HBox>
+                        <Label fx:id="modalGroupeSanguin"
+                               text="–"
+                               styleClass="modal-value-badge"/>
+                    </VBox>
+
+                    <!-- Date de création -->
+                    <VBox styleClass="modal-info-block" HBox.hgrow="ALWAYS" spacing="4">
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <Label text="📅" style="-fx-font-size:16px;"/>
+                            <Label text="DATE DE CRÉATION" styleClass="modal-field-label"/>
+                        </HBox>
+                        <Label fx:id="modalDateCreation"
+                               text="–"
+                               styleClass="modal-info-value"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Séparateur -->
+                <Separator opacity="0.4"/>
+
+                <!-- Antécédents -->
+                <VBox spacing="6">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="📋" style="-fx-font-size:15px;"/>
+                        <Label text="ANTÉCÉDENTS MÉDICAUX" styleClass="modal-field-label"/>
+                    </HBox>
+                    <Label fx:id="modalAntecedents"
+                           text="–"
+                           styleClass="modal-text-block"
+                           wrapText="true"
+                           maxWidth="Infinity"/>
+                </VBox>
+
+                <!-- Allergies -->
+                <VBox spacing="6">
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="⚠" style="-fx-font-size:15px;-fx-text-fill:#e67e22;"/>
+                        <Label text="ALLERGIES CONNUES" styleClass="modal-field-label"/>
+                    </HBox>
+                    <Label fx:id="modalAllergies"
+                           text="–"
+                           styleClass="modal-text-block modal-text-warning"
+                           wrapText="true"
+                           maxWidth="Infinity"/>
+                </VBox>
+
+            </VBox>
+
+            <!-- ── Pied ── -->
+            <HBox styleClass="modal-footer" alignment="CENTER_RIGHT" spacing="10">
+                <padding><Insets top="14" right="24" bottom="18" left="24"/></padding>
+                <Button text="Fermer" styleClass="modal-btn-cancel"
+                        onAction="#handleFermerModal"/>
+                <Button text="✏  Rédiger ordonnance" styleClass="modal-btn-confirm"
+                        onAction="#handleFermerModal"/>
+            </HBox>
+
+        </VBox>
+    </StackPane>
+
+</StackPane>

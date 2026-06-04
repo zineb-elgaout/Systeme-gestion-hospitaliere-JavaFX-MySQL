@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.PharmacienDispensationController"
+      spacing="24" styleClass="sub-view">
+
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <!-- Formulaire dispensation -->
+    <VBox spacing="14" prefWidth="360">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="💊" style="-fx-font-size:28px;"/>
+            <Label text="Dispensation" styleClass="page-title"/>
+        </HBox>
+        <Label fx:id="pharmacienLabel" styleClass="page-subtitle"/>
+        <Separator/>
+
+        <Label text="Médicament *"      styleClass="form-label"/>
+        <ComboBox fx:id="medicamentCombo" maxWidth="Infinity"
+                  promptText="Sélectionner un médicament"/>
+        <Label fx:id="stockDispoLabel"
+               text="Stock disponible : —" styleClass="page-subtitle"/>
+
+        <Label text="Patient *"         styleClass="form-label"/>
+        <TextField fx:id="patientField"
+                   promptText="Nom et prénom du patient"/>
+
+        <Label text="N° Ordonnance"     styleClass="form-label"/>
+        <TextField fx:id="ordonnanceField"
+                   promptText="Référence ordonnance (optionnel)"/>
+
+        <Label text="Quantité *"        styleClass="form-label"/>
+        <TextField fx:id="quantiteField" promptText="ex : 2"/>
+
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="filter-bar">
+            <Label text="Prix total :"/>
+            <Label fx:id="prixTotalLabel" text="—"
+                   style="-fx-font-size:16px;-fx-font-weight:bold;
+                          -fx-text-fill:#117a65;"/>
+        </HBox>
+
+        <Label fx:id="messageLabel" wrapText="true"/>
+
+        <HBox spacing="12">
+            <Button text="✅ Dispenser" styleClass="btn-primary"
+                    maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                    onAction="#handleDispenser"/>
+            <Button text="🧹 Effacer"  styleClass="btn-secondary"
+                    onAction="#handleEffacer"/>
+        </HBox>
+    </VBox>
+
+    <!-- Historique dispensations -->
+    <VBox spacing="12" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <Label text="Historique de dispensation" styleClass="section-title"/>
+        <Separator/>
+        <TableView fx:id="historiqueTable" VBox.vgrow="ALWAYS"
+                   styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="colDate"       text="Date/Heure"  prefWidth="140"/>
+                <TableColumn fx:id="colPatient"    text="Patient"     prefWidth="150"/>
+                <TableColumn fx:id="colMedicament" text="Médicament"  prefWidth="160"/>
+                <TableColumn fx:id="colQte"        text="Qté"         prefWidth="60"/>
+                <TableColumn fx:id="colMontant"    text="Montant"     prefWidth="90"/>
+            </columns>
+            <placeholder>
+                <Label text="Aucune dispensation effectuée."
+                       styleClass="placeholder-label"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+</HBox>

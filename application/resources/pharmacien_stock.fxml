@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.PharmacienStockController"
+      spacing="16" styleClass="sub-view">
+
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <!-- En-tête -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+
+    <Label text="📦" style="-fx-font-size:32px;"/>
+
+    <VBox>
+        <Label text="Gestion du stock"
+               styleClass="page-title"/>
+        <Label fx:id="pharmacienLabel"
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <Label fx:id="totalLabel"
+           style="-fx-font-weight:bold;
+                  -fx-text-fill:#1a5276;"/>
+
+    <Label text="   |   "/>
+
+    <Label fx:id="ruptureLabel"
+           style="-fx-font-weight:bold;
+                  -fx-text-fill:#e74c3c;"/>
+
+    <Button text="🔄 Actualiser"
+            styleClass="btn-secondary"
+            onAction="#handleActualiser"/>
+
+</HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+
+        <!-- Tableau + filtres -->
+        <VBox spacing="12" HBox.hgrow="ALWAYS">
+
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="filter-bar">
+                <TextField fx:id="searchField"
+                           promptText="Rechercher par nom ou description…"
+                           HBox.hgrow="ALWAYS"/>
+                <ComboBox fx:id="filtreEtat" prefWidth="130"/>
+                <Button text="🔍 Rechercher" styleClass="btn-secondary"
+                        onAction="#handleRechercher"/>
+            </HBox>
+
+            <TableView fx:id="table" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colId"
+                                 text="ID"          prefWidth="50"/>
+                    <TableColumn fx:id="colNom"
+                                 text="Nom"         prefWidth="160"/>
+                    <TableColumn fx:id="colDescription"
+                                 text="Description" prefWidth="200"/>
+                    <TableColumn fx:id="colStock"
+                                 text="Stock"       prefWidth="75"/>
+                    <TableColumn fx:id="colSeuil"
+                                 text="Seuil"       prefWidth="70"/>
+                    <TableColumn fx:id="colPrix"
+                                 text="Prix"        prefWidth="90"/>
+                    <TableColumn fx:id="colEtat"
+                                 text="État"        prefWidth="95"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucun médicament trouvé."
+                           styleClass="placeholder-label"/>
+                </placeholder>
+            </TableView>
+
+            <Label fx:id="messageLabel"/>
+        </VBox>
+
+        <!-- Formulaire -->
+        <VBox spacing="10" prefWidth="270" styleClass="ordonnance-preview">
+            <Label text="Médicament" styleClass="section-title"/>
+            <Separator/>
+
+            <Label text="Nom *"        styleClass="form-label"/>
+            <TextField fx:id="nomField"
+                       promptText="Amoxicilline"/>
+
+            <Label text="Description"  styleClass="form-label"/>
+            <TextArea fx:id="descriptionArea"
+                      promptText="Description du médicament…"
+                      prefRowCount="3" wrapText="true"/>
+
+            <Label text="Stock *"      styleClass="form-label"/>
+            <TextField fx:id="stockField"
+                       promptText="100"/>
+
+            <Label text="Seuil alerte" styleClass="form-label"/>
+            <TextField fx:id="seuilField"
+                       promptText="10"/>
+
+            <Label text="Prix (€) *"   styleClass="form-label"/>
+            <TextField fx:id="prixField"
+                       promptText="2.50"/>
+
+            <Separator/>
+            <VBox spacing="8">
+                <Button text="➕ Ajouter"
+                        styleClass="btn-primary"
+                        maxWidth="Infinity"
+                        onAction="#handleAjouter"/>
+                <Button fx:id="btnModifier"
+                        text="✏️ Modifier"
+                        styleClass="btn-secondary"
+                        maxWidth="Infinity"
+                        onAction="#handleModifier"
+                        disable="true"/>
+                <Button fx:id="btnSupprimer"
+                        text="🗑 Supprimer"
+                        styleClass="btn-danger"
+                        maxWidth="Infinity"
+                        onAction="#handleSupprimer"
+                        disable="true"/>
+                <Button text="🧹 Vider"
+                        styleClass="btn-secondary"
+                        maxWidth="Infinity"
+                        onAction="#handleVider"/>
+            </VBox>
+        </VBox>
+
+    </HBox>
+</VBox>

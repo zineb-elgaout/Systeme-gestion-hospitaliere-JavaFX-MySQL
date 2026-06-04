@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.MedecinFactureController"
+      spacing="24" styleClass="sub-view">
+
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <VBox spacing="16" prefWidth="360">
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <Label text="💰" style="-fx-font-size:28px;"/>
+            <Label text="Générer une facture" styleClass="page-title"/>
+        </HBox>
+        <Label text="Patient *" styleClass="form-label"/>
+        <ComboBox fx:id="patientCombo"
+                  promptText="Sélectionner le patient"
+                  maxWidth="Infinity"/>
+        <Label text="Acte médical *" styleClass="form-label"/>
+        <ComboBox fx:id="acteCombo"
+                  promptText="Type de consultation / acte"
+                  maxWidth="Infinity"/>
+        <Label text="Date *" styleClass="form-label"/>
+        <DatePicker fx:id="dateFacture" maxWidth="Infinity"/>
+        <Label text="Montant total (MAD) *" styleClass="form-label"/>
+        <TextField fx:id="montantField" promptText="ex : 45.00"/>
+        <Label text="Part mutuelle (MAD)" styleClass="form-label"/>
+        <TextField fx:id="mutuelleField" promptText="ex : 30.00"/>
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="filter-bar">
+            <Label text="Reste à charge :"/>
+            <Label fx:id="totalLabel" text="—"
+                   style="-fx-font-size:16px;-fx-font-weight:bold;-fx-text-fill:#1a5276;"/>
+        </HBox>
+        <HBox spacing="12">
+            <Button text="✅  Générer la facture" styleClass="btn-primary"
+                    onAction="#handleGenererFacture"
+                    maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            <Button text="🗑  Effacer" styleClass="btn-danger"
+                    onAction="#handleEffacer"/>
+        </HBox>
+    </VBox>
+
+    <VBox spacing="14" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"
+          styleClass="ordonnance-preview">
+        <Label text="Aperçu de la facture" styleClass="section-title"/>
+        <Separator/>
+        <Label text="Médecin" style="-fx-font-weight:bold;"/>
+        <Label fx:id="medecinLabel" styleClass="page-subtitle"/>
+        <Separator/>
+        <Label text="FACTURE"
+               style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#1a5276;"/>
+        <Separator/>
+        <Label fx:id="apercuPatientLabel"  text="Patient : —"
+               styleClass="form-label"/>
+        <Label fx:id="apercuActeLabel"     text="Acte : —"
+               styleClass="form-label"/>
+        <Label fx:id="apercuDateLabel"     text="Date : —"
+               styleClass="form-label"/>
+        <Label fx:id="apercuMontantLabel"  text="Montant : —"
+               style="-fx-font-weight:bold;"/>
+        <Label fx:id="apercuRestantLabel"  text="Reste à charge : —"
+               style="-fx-font-weight:bold;-fx-text-fill:#c0392b;"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Separator/>
+        <Label text="Cachet et Signature" styleClass="page-subtitle"/>
+        <Label text="__________________________"/>
+    </VBox>
+
+</HBox>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.AdminPaiementsController"
+      spacing="20"
+      styleClass="sub-view">
+
+    <padding>
+        <Insets top="30"
+                right="30"
+                bottom="30"
+                left="30"/>
+    </padding>
+
+    <!-- HEADER -->
+
+    <HBox alignment="CENTER_LEFT"
+           spacing="16">
+
+        <Label text="💳"
+               style="-fx-font-size:32px;"/>
+
+        <VBox spacing="4">
+
+            <Label text="Gestion des paiements"
+                   styleClass="page-title"/>
+
+            <Label fx:id="adminLabel"
+                   styleClass="page-subtitle"/>
+
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Button text="🔄 Actualiser"
+                styleClass="btn-secondary"
+                onAction="#handleActualiser"/>
+
+    </HBox>
+
+    <!-- BARRE RECHERCHE -->
+
+    <HBox spacing="12"
+       alignment="CENTER_LEFT"
+       styleClass="filter-bar">
+
+    <TextField fx:id="searchField"
+               promptText="Rechercher..."
+               HBox.hgrow="ALWAYS"/>
+
+    <DatePicker fx:id="filtreDate"
+                promptText="Date"/>
+
+    <Button text="🔍 Rechercher"
+            onAction="#handleRechercher"/>
+
+</HBox>
+
+    <!-- TABLE -->
+
+    <TableView fx:id="table"
+               VBox.vgrow="ALWAYS"
+               styleClass="data-table">
+
+        <columns>
+
+            <TableColumn fx:id="colId"
+                         text="ID"
+                         prefWidth="70"/>
+
+            <TableColumn fx:id="colPatient"
+                         text="Patient"
+                         prefWidth="180"/>
+
+            <TableColumn fx:id="colMedecin"
+                         text="Médecin"
+                         prefWidth="180"/>
+
+            <TableColumn fx:id="colDate"
+                         text="Date"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="colMontant"
+                         text="Montant"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="colPaye"
+                         text="Payé"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="colStatut"
+                         text="Statut"
+                         prefWidth="120"/>
+
+        </columns>
+
+        <placeholder>
+            <Label text="Aucune facture trouvée."
+                   styleClass="placeholder-label"/>
+        </placeholder>
+
+    </TableView>
+
+    <!-- MESSAGE -->
+
+    <Label fx:id="messageLabel"
+           styleClass="page-subtitle"/>
+
+</VBox>

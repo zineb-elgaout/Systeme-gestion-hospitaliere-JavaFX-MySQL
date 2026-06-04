@@ -1,0 +1,949 @@
+/* ══════════════════════════════════════════════════════════
+   VARIABLES & RESET
+══════════════════════════════════════════════════════════ */
+* { -fx-font-family: "Segoe UI", Arial, sans-serif; }
+
+/* ══════════════════════════════════════════════════════════
+   PAGE LOGIN
+══════════════════════════════════════════════════════════ */
+.login-root       { -fx-background-color: #f0f4f8; }
+
+/* Panneau gauche */
+.login-left {
+    -fx-background-color:  linear-gradient(to bottom, #1a3a5c, #1a5276);
+    -fx-padding: 50px 40px;
+    -fx-min-width: 380px;
+}
+.hospital-icon {
+	-fx-text-fill: white;
+    -fx-font-size: 70px;
+}
+.app-name {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.app-title {
+    -fx-font-size: 15px;
+    -fx-text-fill: #aed6f1;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+.app-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #85c1e9;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+.divider-line {
+    -fx-border-color: rgba(255,255,255,0.2);
+    -fx-border-width: 0 0 1 0;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 1px;
+}
+
+/* Panneau droit */
+.login-right {
+    -fx-background-color: #f0f4f8;
+    -fx-padding: 40px;
+}
+
+/* Carte formulaire */
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16px;
+    -fx-padding: 40px 36px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.13), 18, 0, 0, 5);
+}
+.card-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+}
+.card-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Labels des champs */
+.field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 4px 0px 4px 0px;
+}
+
+/* Champs de saisie */
+.input-field {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 11px 14px;
+    -fx-font-size: 14px;
+    -fx-pref-height: 44px;
+}
+.input-field:focused {
+    -fx-border-color: #1a5276;
+    -fx-border-width: 2px;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(26,82,118,0.15), 6, 0, 0, 2);
+}
+
+/* Toggle mot de passe */
+.toggle-pwd-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #1a5276;
+    -fx-cursor: hand;
+}
+.toggle-pwd-label:hover { -fx-text-fill: #154360; }
+
+/* Message erreur */
+.error-label {
+    -fx-text-fill: #c0392b;
+    -fx-font-size: 12px;
+    -fx-background-color: #fde8e8;
+    -fx-background-radius: 8px;
+    -fx-border-color: #f5c6cb;
+    -fx-border-radius: 8px;
+    -fx-padding: 9px 14px;
+}
+
+/* Bouton primaire */
+.btn-primary {
+    -fx-background-color: #1a5276;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 13px;
+    -fx-cursor: hand;
+    -fx-pref-height: 46px;
+}
+.btn-primary:hover   { -fx-background-color: #154360; }
+.btn-primary:pressed { -fx-background-color: #0e2f44; }
+.btn-primary:disabled {
+    -fx-background-color: #aed6f1;
+    -fx-text-fill: white;
+}
+
+/* Texte d'aide */
+.help-text {
+    -fx-font-size: 11px;
+    -fx-text-fill: #bdc3c7;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PAGE ACCUEIL
+══════════════════════════════════════════════════════════ */
+.accueil-root { -fx-background-color: #f0f4f8; }
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #1a3a5c;
+    -fx-padding: 0px;
+    -fx-spacing: 0px;
+
+    -fx-min-width: 250px;
+    -fx-pref-width: 250px;
+    -fx-max-width: 250px;
+}
+.sidebar-logo {
+    -fx-background-color: #12293f;
+    -fx-padding: 18px 16px;
+}
+.sidebar-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Profil */
+.user-info {
+    -fx-padding: 20px 16px 14px 16px;
+    -fx-alignment: center;
+}
+.user-avatar {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 30px;
+    -fx-padding: 12px 16px;
+    -fx-alignment: center;
+}
+.user-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+.user-role {
+    -fx-font-size: 11px;
+    -fx-text-fill: #7fb3d3;
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-background-radius: 10px;
+    -fx-padding: 3px 10px;
+}
+.user-email {
+    -fx-font-size: 11px;
+    -fx-text-fill: #5d8aa8;
+}
+
+.sidebar-separator {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-opacity: 0.5;
+}
+
+/* Section label menu */
+.menu-section-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5d8aa8;
+    -fx-padding: 12px 16px 4px 16px;
+    -fx-letter-spacing: 1px;
+}
+
+/* Container menu */
+.menu-container { -fx-padding: 4px 8px; }
+
+/* Boutons du menu */
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aed6f1;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 11px 14px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 10px;
+}
+.menu-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.10);
+    -fx-text-fill: white;
+}
+.menu-btn:pressed {
+    -fx-background-color: rgba(255,255,255,0.18);
+}
+.menu-btn-active {
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Bouton déconnexion */
+.btn-logout {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 13px;
+    -fx-padding: 13px 16px;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 0px;
+}
+.btn-logout:hover {
+    -fx-background-color: rgba(231,76,60,0.12);
+}
+
+/* Contenu principal */
+.main-content {
+    -fx-background-color: #f0f4f8;
+    -fx-padding: 40px;
+    -fx-spacing: 14px;
+    -fx-alignment: CENTER;
+}
+.welcome-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+}
+.welcome-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: #7f8c8d;
+    -fx-text-alignment: center;
+    -fx-max-width: 500px;
+}
+/* ── Bouton Register (secondaire) ───────────────────────── */
+.btn-register {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1a5276;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-border-color: #1a5276;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+    -fx-pref-height: 42px;
+}
+.btn-register:hover {
+    -fx-background-color: #1a5276;
+    -fx-text-fill: white;
+}
+.btn-register:pressed {
+    -fx-background-color: #154360;
+    -fx-text-fill: white;
+}
+.link-label{
+	-fx-text-fill: #1a5276;
+}
+.link-label:hover {
+    -fx-cursor: hand;
+}
+/* ── Label succès ───────────────────────────────────────── */
+.success-label {
+    -fx-text-fill: #1e8449;
+    -fx-font-size: 12px;
+    -fx-background-color: #d5f5e3;
+    -fx-background-radius: 8px;
+    -fx-border-color: #a9dfbf;
+    -fx-border-radius: 8px;
+    -fx-padding: 9px 14px;
+}
+/* ── Sous-vues patient ──────────────────────────────────── */
+.subview-root {
+    -fx-background-color: #f0f4f8;
+}
+.subview-header {
+    -fx-background-color: white;
+    -fx-padding: 18px 24px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);
+}
+.subview-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+}
+.form-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 24px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);
+}
+.form-section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+    -fx-padding: 0 0 8px 0;
+    -fx-border-color: transparent transparent #eaecef transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+.data-table {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 0;
+}
+.data-table .column-header {
+    -fx-background-color: #1a3a5c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 10px 8px;
+}
+.data-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e74c3c;
+    -fx-border-color: #e74c3c;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+.btn-secondary:hover {
+    -fx-background-color: #fdedec;
+}
+/* ══════════════════════════════════════════════════════════
+   CARTES STATISTIQUES
+══════════════════════════════════════════════════════════ */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 16px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 8, 0, 0, 2);
+}
+.stat-card-green {
+    -fx-background-color: #eafaf1;
+}
+.stat-card-red {
+    -fx-background-color: #fdedec;
+}
+.stat-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7f8c8d;
+    -fx-letter-spacing: 1px;
+}
+.stat-value {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+}
+.stat-value-green {
+    -fx-text-fill: #1e8449;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PANNEAU DE DÉTAIL
+══════════════════════════════════════════════════════════ */
+.detail-panel {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);
+}
+.detail-panel-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+    -fx-padding: 0 0 8px 0;
+    -fx-border-color: transparent transparent #eaecef transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+.detail-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7f8c8d;
+    -fx-letter-spacing: 0.5px;
+}
+.detail-value {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+}
+.detail-amount {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+}
+.detail-amount-green {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e8449;
+}
+.detail-amount-red {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c0392b;
+}
+.detail-notes {
+    -fx-text-fill: #5d6d7e;
+    -fx-font-style: italic;
+}
+.detail-ordonnance {
+    -fx-background-color: #eaf4fb;
+    -fx-background-radius: 8px;
+    -fx-border-color: #aed6f1;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px 12px;
+    -fx-text-fill: #154360;
+    -fx-font-size: 12px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DOSSIER MÉDICAL
+══════════════════════════════════════════════════════════ */
+.dossier-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+    -fx-line-spacing: 4px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   BOUTON SECONDAIRE BLEU
+══════════════════════════════════════════════════════════ */
+.btn-secondary-blue {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1a5276;
+    -fx-border-color: #1a5276;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+.btn-secondary-blue:hover {
+    -fx-background-color: #eaf2fb;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Ajouts CSS — espace médecin (à fusionner dans main.css)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Conteneur générique de sous-vue ─────────────────────── */
+.sub-view {
+    -fx-background-color: #f4f6f9;
+}
+
+/* ── Titres ───────────────────────────────────────────────── */
+.page-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a2c42;
+}
+
+.page-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c9a;
+}
+
+.section-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+}
+
+/* ── Labels de formulaire ─────────────────────────────────── */
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+/* ── Barre de filtres ─────────────────────────────────────── */
+.filter-bar {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-padding: 12px 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);
+}
+
+/* ── Tableau de données ───────────────────────────────────── */
+.data-table {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+}
+.data-table .column-header {
+    -fx-background-color: #1a5276;
+}
+.data-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.data-table .table-row-cell:selected {
+    -fx-background-color: #0b86da;
+}
+
+/* Focus sur la table (retire le contour bleu par défaut) */
+.data-table:focused {
+    -fx-background-insets: 0;
+}
+
+
+/* ── Placeholder ─────────────────────────────────────────── */
+.placeholder-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #aab7c4;
+}
+
+/* ── Aperçu ordonnance / facture ─────────────────────────── */
+.ordonnance-preview {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+    -fx-padding: 24px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);
+    -fx-border-color: #d5e8f5;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+}
+
+/* ── Boutons ──────────────────────────────────────────────── */
+.btn-primary {
+    -fx-background-color: #1a5276;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+.btn-primary:hover {
+    -fx-background-color: #154360;
+}
+
+.btn-secondary {
+    -fx-background-color: #eaf2fb;
+    -fx-text-fill: #1a5276;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+.btn-secondary:hover {
+    -fx-background-color: #d6eaf8;
+}
+
+.btn-danger {
+    -fx-background-color: #f1948a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 16px;
+    -fx-cursor: hand;
+}
+.btn-danger:hover {
+    -fx-background-color: #e74c3c;
+}
+
+/* ── Grille planning ──────────────────────────────────────── */
+.calendar-grid {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   DIALOG MODAL STYLÉ
+══════════════════════════════════════════════════════════ */
+
+.modal-overlay {
+    -fx-background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.22), 30, 0, 0, 6);
+    -fx-min-width: 440px;
+    -fx-max-width: 440px;
+}
+
+.modal-header {
+    -fx-background-color: linear-gradient(to right, #1a3a5c, #1a5276);
+    -fx-background-radius: 16px 16px 0px 0px;
+    -fx-padding: 14px 20px 14px 20px;
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER_LEFT;
+}
+.modal-header-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.modal-header-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #aed6f1;
+}
+.modal-icon {
+	-fx-text-fill: white;
+    -fx-font-size: 22px;
+}
+
+.modal-close-btn {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-background-radius: 50px;
+    -fx-cursor: hand;
+    -fx-min-width: 26px;
+    -fx-min-height: 26px;
+    -fx-pref-width: 26px;
+    -fx-pref-height: 26px;
+}
+.modal-close-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.28);
+}
+
+.modal-body {
+    -fx-padding: 16px 20px 0px 20px;
+    -fx-spacing: 10px;
+}
+
+.modal-field-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.modal-input {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 7px 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+}
+.modal-input:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #1a5276;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(26,82,118,0.15), 6, 0, 0, 2);
+}
+.modal-input:hover {
+    -fx-border-color: #1a5276;
+    -fx-background-color: #ffffff;
+}
+
+.modal-error-label {
+    -fx-text-fill: #c0392b;
+    -fx-font-size: 11px;
+    -fx-padding: 5px 10px;
+    -fx-background-color: #fde8e8;
+    -fx-background-radius: 8px;
+    -fx-border-color: #f5c6cb;
+    -fx-border-radius: 8px;
+}
+
+.modal-footer {
+    -fx-padding: 12px 20px 16px 20px;
+    -fx-spacing: 10px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.modal-btn-cancel {
+    -fx-background-color: #f1f3f4;
+    -fx-text-fill: #444444;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 18px;
+}
+.modal-btn-cancel:hover {
+    -fx-background-color: #e2e5e9;
+}
+
+.modal-btn-confirm {
+    -fx-background-color: #1a5276;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 18px;
+    -fx-effect: dropshadow(gaussian, rgba(26,82,118,0.35), 8, 0, 0, 3);
+}
+.modal-btn-confirm:hover {
+    -fx-background-color: #154360;
+}
+.modal-btn-confirm:pressed {
+    -fx-background-color: #0e2f44;
+}
+/* ══════════════════════════════════════════════════════════
+   KPI CARDS ADMIN
+══════════════════════════════════════════════════════════ */
+
+.stats-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16px;
+    -fx-border-radius: 16px;
+    -fx-border-color: #d6eaf8;
+    -fx-border-width: 1px;
+
+    -fx-padding: 18px;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.08),
+        10,
+        0,
+        0,
+        3
+    );
+}
+
+.stats-card:hover {
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(26,82,118,0.18),
+        18,
+        0,
+        0,
+        5
+    );
+
+    -fx-translate-y: -2px;
+}
+
+/* titre carte */
+.stats-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+/* valeur */
+.stats-value {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+/* petit texte */
+.stats-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+
+
+/* ══════════════════════════════════════════════════════════
+   MODAL DOSSIER MÉDICAL — styles spécifiques
+══════════════════════════════════════════════════════════ */
+
+/* Bloc d'info dans le modal (groupe sanguin / date) */
+.modal-info-block {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10px;
+    -fx-border-color: #e8edf2;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 12px 16px;
+}
+
+/* Badge groupe sanguin */
+.modal-value-badge {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a5276;
+    -fx-background-color: #d6eaf8;
+    -fx-background-radius: 8px;
+    -fx-padding: 4px 14px;
+}
+
+/* Valeur info normale */
+.modal-info-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 4px 0;
+}
+
+/* Label field dans modal */
+.modal-field-label {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7f8c9a;
+    -fx-letter-spacing: 0.8px;
+}
+
+/* Bloc texte (antécédents / allergies) */
+.modal-text-block {
+    -fx-font-size: 13px;
+    -fx-text-fill: #34495e;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8px;
+    -fx-border-color: #e8edf2;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-padding: 10px 14px;
+    -fx-line-spacing: 3px;
+}
+
+/* Bloc allergies avec teinte orange */
+.modal-text-warning {
+    -fx-background-color: #fef9f0;
+    -fx-border-color: #f0d5a8;
+    -fx-text-fill: #7d4e0f;
+}
+
+/* Carte modale principale (override du .modal-card existant) */
+.modal-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.28), 40, 0, 0, 10);
+   -fx-min-width: 440px;
+    -fx-max-width: 440px
+}
+
+/* En-tête modal */
+.modal-header {
+    -fx-background-color: linear-gradient(to right, #12293f, #1a5276);
+    -fx-background-radius: 18px 18px 0 0;
+    -fx-padding: 18px 20px;
+}
+
+.modal-header-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.modal-header-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #aed6f1;
+}
+
+.modal-icon {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+}
+
+/* Bouton fermer (X) */
+.modal-close-btn {
+    -fx-background-color: rgba(255,255,255,0.18);
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50px;
+    -fx-cursor: hand;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-padding: 0;
+}
+.modal-close-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.32);
+}
+
+/* Pied modal */
+.modal-footer {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 0 0 18px 18px;
+    -fx-border-color: #eaecef transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* Bouton annuler */
+.modal-btn-cancel {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #5d6d7e;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 9px 20px;
+    -fx-cursor: hand;
+}
+.modal-btn-cancel:hover {
+    -fx-background-color: #dde1e2;
+}
+
+/* Bouton confirmer */
+.modal-btn-confirm {
+    -fx-background-color: linear-gradient(to bottom, #1a5276, #154360);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 9px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(26,82,118,0.4), 8, 0, 0, 3);
+}
+.modal-btn-confirm:hover {
+    -fx-background-color: linear-gradient(to bottom, #154360, #0e2f44);
+}
+
+/* Overlay (fond semi-transparent) */
+.modal-overlay {
+    -fx-background-color: rgba(10, 20, 35, 0.55);
+}
+/* ── Sélection des lignes TableView ───────────────────── */
+.data-table .table-row-cell:selected {
+    -fx-background-color: #0b86da;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+
+
+/* Ligne vide */
+.data-table .table-row-cell:empty {
+    -fx-background-color: transparent;
+}

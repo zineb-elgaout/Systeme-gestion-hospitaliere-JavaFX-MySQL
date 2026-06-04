@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.PatientDossierController"
+      spacing="0" styleClass="subview-root">
+
+    <!-- ══ EN-TÊTE ═════════════════════════════════════════ -->
+    <HBox styleClass="subview-header" alignment="CENTER_LEFT" spacing="12">
+        <Label text="📋  Dossier médical &amp; Historique"
+               styleClass="subview-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="↻  Actualiser"
+                styleClass="btn-secondary-blue"
+                onAction="#handleRefresh"/>
+    </HBox>
+
+    <!-- ══ STATISTIQUES ════════════════════════════════════ -->
+    <HBox spacing="16" style="-fx-padding:16px 24px 0 24px;">
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="CONSULTATIONS" styleClass="stat-label"/>
+            <Label fx:id="nbConsultationsLabel" text="0"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="DERNIÈRE VISITE" styleClass="stat-label"/>
+            <Label fx:id="derniereVisiteLabel" text="—"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="DOSSIER OUVERT LE" styleClass="stat-label"/>
+            <Label fx:id="dateCreationLabel" text="—"
+                   styleClass="stat-value"/>
+        </VBox>
+
+        <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" spacing="4">
+            <Label text="GROUPE SANGUIN" styleClass="stat-label"/>
+            <Label fx:id="groupeSanguinLabel" text="—"
+                   styleClass="stat-value"/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ══ INFOS MÉDICALES ═════════════════════════════════ -->
+    <HBox spacing="16" style="-fx-padding:12px 24px 0 24px;">
+
+        <VBox styleClass="form-card" HBox.hgrow="ALWAYS" spacing="8">
+            <Label text="Antécédents médicaux"
+                   styleClass="form-section-title"/>
+            <Label fx:id="antecedentsLabel"
+                   styleClass="dossier-text"
+                   wrapText="true"
+                   text="Chargement..."/>
+        </VBox>
+
+        <VBox styleClass="form-card" HBox.hgrow="ALWAYS" spacing="8">
+            <Label text="Allergies connues"
+                   styleClass="form-section-title"/>
+            <Label fx:id="allergiesLabel"
+                   styleClass="dossier-text"
+                   wrapText="true"
+                   text="Chargement..."/>
+        </VBox>
+
+    </HBox>
+
+    <!-- ══ HISTORIQUE ══════════════════════════════════════ -->
+    <HBox spacing="16" VBox.vgrow="ALWAYS"
+          style="-fx-padding:12px 24px 24px 24px;">
+
+        <!-- Tableau consultations -->
+        <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" spacing="8">
+            <Label text="Historique des consultations"
+                   styleClass="form-section-title"
+                   style="-fx-padding:0;"/>
+            <TableView fx:id="tableConsultations"
+                       VBox.vgrow="ALWAYS"
+                       styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="colDate"
+                                 text="Date"         prefWidth="110"/>
+                    <TableColumn fx:id="colMedecin"
+                                 text="Médecin"      prefWidth="170"/>
+                    <TableColumn fx:id="colSpecialite"
+                                 text="Spécialité"   prefWidth="130"/>
+                    <TableColumn fx:id="colDiagnostic"
+                                 text="Diagnostic"   prefWidth="220"/>
+                    <TableColumn fx:id="colOrdonnance"
+                                 text="Ordonnance"   prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune consultation enregistrée."
+                           style="-fx-text-fill:#7f8c8d;-fx-font-size:14px;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <!-- Panneau détail -->
+        <ScrollPane fitToWidth="true" prefWidth="300" minWidth="280"
+                    style="-fx-background:transparent;
+                           -fx-background-color:transparent;">
+            <VBox styleClass="detail-panel" spacing="12">
+
+                <Label text="Détail de la consultation"
+                       styleClass="detail-panel-title"/>
+
+                <VBox spacing="4">
+                    <Label text="Date" styleClass="detail-label"/>
+                    <Label fx:id="detailDateLabel"
+                           styleClass="detail-value" text="—"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Médecin" styleClass="detail-label"/>
+                    <Label fx:id="detailMedecinLabel"
+                           styleClass="detail-value" text="—"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Spécialité" styleClass="detail-label"/>
+                    <Label fx:id="detailSpecialiteLabel"
+                           styleClass="detail-value" text="—"/>
+                </VBox>
+
+                <Separator/>
+
+                <VBox spacing="4">
+                    <Label text="Diagnostic" styleClass="detail-label"/>
+                    <Label fx:id="detailDiagnosticLabel"
+                           styleClass="detail-value"
+                           wrapText="true" text="—"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Notes du médecin" styleClass="detail-label"/>
+                    <Label fx:id="detailNotesLabel"
+                           styleClass="detail-value detail-notes"
+                           wrapText="true" text="—"/>
+                </VBox>
+
+                <Separator/>
+
+                <!-- Ordonnance (cachée si absente) -->
+                <Label fx:id="detailOrdonnanceTitre"
+                       text="📋 Ordonnance associée"
+                       styleClass="detail-label"
+                       visible="false" managed="false"/>
+                <Label fx:id="detailOrdonnanceLabel"
+                       styleClass="detail-value detail-ordonnance"
+                       wrapText="true"
+                       visible="false" managed="false"
+                       text=""/>
+
+            </VBox>
+        </ScrollPane>
+    </HBox>
+</VBox>

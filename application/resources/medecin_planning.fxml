@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="application.controller.MedecinPlanningController"
+      spacing="20" styleClass="sub-view">
+
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <!-- En-tête ─────────────────────────────────────────────── -->
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="🗓" style="-fx-font-size:32px;"/>
+        <VBox>
+            <Label text="Mon planning" styleClass="page-title"/>
+            <Label fx:id="medecinLabel" styleClass="page-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <!-- Navigation semaine ───────────────────────────────────── -->
+    <HBox alignment="CENTER" spacing="16" styleClass="filter-bar">
+        <Button text="◀  Semaine précédente" styleClass="btn-secondary"
+                onAction="#handleSemainePrecedente"/>
+        <Label fx:id="semaineCourante"
+               text="Semaine du …"
+               styleClass="section-title"/>
+        <Button text="Semaine suivante  ▶" styleClass="btn-secondary"
+                onAction="#handleSemaineSuivante"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="📍 Aujourd'hui" styleClass="btn-primary"
+                onAction="#handleAujordhui"/>
+    </HBox>
+
+    <!-- Grille calendrier (Lun–Dim × créneaux horaires) ─────── -->
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" fitToHeight="true">
+        <GridPane fx:id="calendarGrid" styleClass="calendar-grid"
+                  hgap="4" vgap="4">
+            <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+            <!-- Les colonnes/lignes sont générées dynamiquement par le contrôleur -->
+        </GridPane>
+    </ScrollPane>
+
+</VBox>

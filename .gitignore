@@ -1,0 +1,20 @@
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+out/
+
+# IntelliJ
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+lib/
+*.jar
