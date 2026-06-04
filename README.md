@@ -6,7 +6,7 @@
 ![JavaFX](https://img.shields.io/badge/JavaFX-21-blue?style=flat-square)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![Architecture](https://img.shields.io/badge/Architecture-MVC-green?style=flat-square)
-![Status](https://img.shields.io/badge/Status-En%20développement-yellow?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Termine-yellow?style=flat-square)
 
 ---
 
@@ -204,15 +204,15 @@ HopitalGest/
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/VOTRE_USERNAME/HopitalGest.git
-cd HopitalGest
+git clone https://github.com/zineb-elgaout/Systeme-gestion-hospitaliere-JavaFX-MySQL.git
+cd Systeme-gestion-hospitaliere-JavaFX-MySQL
 ```
 
 ### 2. Télécharger JavaFX SDK
 
 Aller sur [gluonhq.com/products/javafx](https://gluonhq.com/products/javafx/)
 → Télécharger **JavaFX 21 SDK** pour votre OS
-→ Décompresser dans `HopitalGest/lib/javafx-sdk/`
+→ Décompresser dans `/lib/javafx-sdk/`
 
 ### 3. Configurer dans IntelliJ / Eclipse
 
